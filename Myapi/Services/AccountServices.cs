@@ -15,6 +15,10 @@ namespace Myapi.Services
         {
             this.mySqlContext=_mysqlcontext;
         }
+        public IEnumerable<Account> GetAll()
+        {
+            return mySqlContext.Accounts.ToList();            
+        }
         public IEnumerable<Account> GetAll(Func<Account,bool> exp)
         {
             return mySqlContext.Accounts.Where(exp).ToList();            
