@@ -11,6 +11,8 @@ namespace Myapi.SqlContext
     {
         public DbSet<Account> Accounts { get; set; }
 
+        public DbSet<Application> Applications { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
                    => optionsBuilder.UseMySql(@"Server=localhost;database=ef;uid=root;pwd=root");
 

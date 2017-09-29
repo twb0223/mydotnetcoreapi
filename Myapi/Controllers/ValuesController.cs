@@ -3,42 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Myapi.Services;
+using Myapi.Models;
+using Myapi.SqlContext;
+using Myapi.Common;
+using Newtonsoft.Json;
 
 namespace Myapi.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        private SqlContext.MySqlContext mySqlContext;
+        private AccountServices accountServices;
+
+        public ValuesController()
         {
-            return new string[] { "value1", "value2" };
+            this.mySqlContext = new MySqlContext();
+            this.accountServices = new AccountServices(mySqlContext);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            CommonResult<Account> json = new CommonResult<Account>
+            {
+                Code = "000",
+                Message = "ok",
+                Data = accountServices.GetAll(x => x.ID != null).FirstOrDefault()
+            };
+            return JsonConvert.SerializeObject(json);
         }
     }
 }
