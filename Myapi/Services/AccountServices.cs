@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Myapi.Models;
+using Myapi.SqlContext;
+using Myapi.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using Myapi.SqlContext;
-using Myapi.Models;
 
 namespace Myapi.Services
 {
@@ -13,35 +13,36 @@ namespace Myapi.Services
 
         public AccountServices(MySqlContext _mysqlcontext)
         {
-            this.mySqlContext=_mysqlcontext;
+            this.mySqlContext = _mysqlcontext;
         }
         public IEnumerable<Account> GetAll()
         {
-            return mySqlContext.Accounts.ToList();            
+            return mySqlContext.Accounts.ToList();
         }
-        public IEnumerable<Account> GetAll(Func<Account,bool> exp)
+        public IEnumerable<Account> GetAll(Func<Account, bool> exp)
         {
-            return mySqlContext.Accounts.Where(exp).ToList();            
+            return mySqlContext.Accounts.Where(exp).ToList();
         }
+
         public void Insert(Account account)
         {
             mySqlContext.Accounts.Add(account);
-            mySqlContext.SaveChanges();            
+            mySqlContext.SaveChanges();
         }
 
-        public IEnumerable<object> GetAccountApplist()
+        public IEnumerable<Account_ApplicationVM> GetAccountApplist()
         {
             var result = (from a in mySqlContext.Applications
                           join b in mySqlContext.Accounts
                           on a.AccountID equals b.ID into hh
                           from h in hh.DefaultIfEmpty()
-                          select new
+                          select new Account_ApplicationVM
                           {
-                              a.AppId,
-                              a.AppName,
-                              a.AppSecret,
-                              h.UserName,
-                              a.CreateTime
+                              AppId = a.AppId,
+                              AppName = a.AppName,
+                              AppSecret = a.AppSecret,
+                              UserName = h.UserName,
+                              CreateTime = a.CreateTime
                           }).ToList();
             return result;
         }

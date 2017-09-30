@@ -70,7 +70,7 @@ namespace Myapi.Middlewares
         {
             BaseResponseResult response = new BaseResponseResult
             {
-                Code = "401",
+                Code = ResultCode.S401,
                 Message = "You are not authorized!"
             };
             context.Response.StatusCode = 401;
@@ -86,7 +86,7 @@ namespace Myapi.Middlewares
         {
             BaseResponseResult response = new BaseResponseResult
             {
-                Code = "408",
+                Code = ResultCode.S408,
                 Message = "Time Out!"
             };
             context.Response.StatusCode = 408;

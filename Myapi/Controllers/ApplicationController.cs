@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Myapi.Services;
-using Myapi.Models;
 using Myapi.SqlContext;
-using Myapi.Common;
-using Newtonsoft.Json;
 
 namespace Myapi.Controllers
 {
@@ -23,5 +16,6 @@ namespace Myapi.Controllers
             this.appServices = new AppServices(mySqlContext);
         }
         
+
     }
 }

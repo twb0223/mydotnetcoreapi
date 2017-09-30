@@ -27,7 +27,6 @@ namespace Myapi.Services
             return mySqlContext.Applications.ToList();
         }
 
-
         public void Insert(Application application)
         {
             mySqlContext.Applications.Add(application);
