@@ -5,11 +5,3 @@
    * Mysql
    * Swagger
 
-### 运行步骤：
-<code>
-    dotnet restore
-    <br>
-    dotnet ef database update
-    <br>
-    dotnet run
-</code>
