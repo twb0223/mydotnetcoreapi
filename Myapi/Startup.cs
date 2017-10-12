@@ -6,6 +6,7 @@ using Microsoft.Extensions.Logging;
 using Myapi.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
+using Newtonsoft.Json.Serialization;
 
 namespace Myapi
 {
@@ -27,7 +28,13 @@ namespace Myapi
                 c.SwaggerDoc("v1", new Info { Title = "MyAPI", Version = "v1" });
             });
 
-            services.AddMvc();
+            //去掉json名称转换。
+            services.AddMvc().AddJsonOptions(options=>{
+                if(options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
+                {
+                    resolver.NamingStrategy=null;
+                }
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -39,6 +46,9 @@ namespace Myapi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+            }else
+            {
+                app.UseExceptionHandler();
             }
             app.UseSwagger();
 
@@ -52,7 +62,7 @@ namespace Myapi
                 EncryptKey = Configuration.GetSection("ApiKey")["EncryptKey"],
                 ExpiredSecond = Convert.ToInt32(Configuration.GetSection("ApiKey")["ExpiredSecond"])
             });
-
+            app.UseStatusCodePages();
             app.UseMvc();
         }
     }
