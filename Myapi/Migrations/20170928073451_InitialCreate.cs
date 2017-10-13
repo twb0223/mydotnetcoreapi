@@ -25,7 +25,6 @@ namespace Myapi.Migrations
                     table.PrimaryKey("PK_Accounts", x => x.ID);
                 });
         }
-
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

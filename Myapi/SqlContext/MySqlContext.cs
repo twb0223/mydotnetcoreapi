@@ -10,12 +10,9 @@ namespace Myapi.SqlContext
     public class MySqlContext : DbContext
     {
         public DbSet<Account> Accounts { get; set; }
-
         public DbSet<Application> Applications { get; set; }
-
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
                    => optionsBuilder.UseMySql(@"Server=localhost;database=ef;uid=root;pwd=root");
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

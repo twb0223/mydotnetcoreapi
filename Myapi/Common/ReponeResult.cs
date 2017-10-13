@@ -18,24 +18,20 @@ namespace Myapi.Common
         public string Sinature { get; set; }
         public string AppSecret { get; set; }
     }
-
     public class ListResult<T> : BaseResponseResult where T : class
     {
         public IEnumerable<T> Data { get; set; }
     }
-
     public class SingleResult<T> : BaseResponseResult where T : class
     {
         public T Data { get; set; }
     }
-
     public class Book
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
     }
-
     public enum ResultCode
     {
         C1000 = 1000,

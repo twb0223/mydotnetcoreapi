@@ -15,7 +15,5 @@ namespace Myapi.Controllers
             this.mySqlContext = new MySqlContext();
             this.appServices = new AppServices(mySqlContext);
         }
-        
-
     }
 }
