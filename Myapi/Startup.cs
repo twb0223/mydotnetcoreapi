@@ -17,7 +17,6 @@ namespace Myapi
             Configuration = configuration;
 
         }
-
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,15 +27,15 @@ namespace Myapi
                 c.SwaggerDoc("v1", new Info { Title = "MyAPI", Version = "v1" });
             });
 
-            //去掉json名称转换。
-            services.AddMvc().AddJsonOptions(options=>{
-                if(options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
+            //去掉json名称转换。大写转小写
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                if (options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
                 {
-                    resolver.NamingStrategy=null;
+                    resolver.NamingStrategy = null;
                 }
             });
         }
-
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -46,7 +45,8 @@ namespace Myapi
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }else
+            }
+            else
             {
                 app.UseExceptionHandler();
             }

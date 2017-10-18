@@ -14,7 +14,7 @@ namespace Myapi.SqlContext
         public DbSet<Application> Applications { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-                   => optionsBuilder.UseMySql(@"Server=localhost;database=ef;uid=root;pwd=root");
+                   => optionsBuilder.UseMySql(@"Server=bdm275410299.my3w.com;database=bdm275410299_db;uid=bdm275410299;pwd=tanwenbin");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
