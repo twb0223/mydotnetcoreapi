@@ -57,11 +57,11 @@ namespace Myapi
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
             });
-            app.UseApiAuthorized(new ApiAuthorizedOptions
-            {
-                EncryptKey = Configuration.GetSection("ApiKey")["EncryptKey"],
-                ExpiredSecond = Convert.ToInt32(Configuration.GetSection("ApiKey")["ExpiredSecond"])
-            });
+            // app.UseApiAuthorized(new ApiAuthorizedOptions
+            // {
+            //     EncryptKey = Configuration.GetSection("ApiKey")["EncryptKey"],
+            //     ExpiredSecond = Convert.ToInt32(Configuration.GetSection("ApiKey")["ExpiredSecond"])
+            // });
             app.UseStatusCodePages();
             app.UseMvc();
         }

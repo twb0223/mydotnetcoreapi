@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Myapi.Services;
 using Myapi.SqlContext;
+using Myapi.Models;
+using Myapi.Common;
 
 namespace Myapi.Controllers
 {
@@ -14,6 +16,18 @@ namespace Myapi.Controllers
         {
             this.mySqlContext = new MySqlContext();
             this.appServices = new AppServices(mySqlContext);
+        }
+
+        [HttpPost]
+        public ListResult<Application> GetAllApplications()
+        {
+            var commonResult = new ListResult<Application>
+            {
+                Code = ResultCode.C1000,
+                Message = "OK",
+                Data = appServices.GetList()
+            };
+            return commonResult;
         }
     }
 }

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Myapi.Controllers
 {
 
-    [Route("api/Accounts")]
+     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
         private SqlContext.MySqlContext mySqlContext;
@@ -43,7 +43,7 @@ namespace Myapi.Controllers
                 AccountID = appDto.AccountID,
                 AppId = Guid.NewGuid(),
                 AppName = appDto.AppName,
-                AppSecret = MD5Helper.GetEncryptResult(appDto.AppName, appDto.AccountID + appDto.AppName + DateTime.Now),
+                AppSecret = MD5Helper.GetEncryptResult(appDto.AppName, appDto.AccountID + appDto.AppName),
                 CreateTime = DateTime.Now
             });
             return new SingleResult<string>

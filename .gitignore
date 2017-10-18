@@ -27,3 +27,4 @@ Myapi/obj/Myapi.csproj.nuget.g.props
 Myapi/obj/Myapi.csproj.nuget.cache
 *.ide
 /.vs/Myapi/v15/sqlite3
+IdentityServer/obj/project.assets.json
