@@ -13,11 +13,9 @@ namespace Myapi.ViewModel
         public string UserName { get; set; }
         public DateTime CreateTime { get; set; }
     }
-
     public class AppDto
     {
         public string AppName { get; set; }
-
         public Guid AccountID { get; set; }
     }
 }

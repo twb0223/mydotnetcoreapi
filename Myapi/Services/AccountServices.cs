@@ -10,7 +10,6 @@ namespace Myapi.Services
     public class AccountServices
     {
         private MySqlContext mySqlContext;
-
         public AccountServices(MySqlContext _mysqlcontext)
         {
             this.mySqlContext = _mysqlcontext;
@@ -23,13 +22,11 @@ namespace Myapi.Services
         {
             return mySqlContext.Accounts.Where(exp).ToList();
         }
-
         public void Insert(Account account)
         {
             mySqlContext.Accounts.Add(account);
             mySqlContext.SaveChanges();
         }
-
         public IEnumerable<Account_ApplicationVM> GetAccountApplist()
         {
             var result = (from a in mySqlContext.Applications
