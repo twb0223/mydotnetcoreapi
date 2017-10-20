@@ -22,6 +22,13 @@ namespace Myapi.Common
     {
         public IEnumerable<T> Data { get; set; }
     }
+    public class PageResult<T> : BaseResponseResult where T : class
+    {
+        public int Total{get;set;}
+        public int PageSize { get; set; }
+        public int PageIndex { get; set; }
+        public IEnumerable<T> Data { get; set; }
+    }
     public class SingleResult<T> : BaseResponseResult where T : class
     {
         public T Data { get; set; }

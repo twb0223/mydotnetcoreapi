@@ -48,7 +48,6 @@ namespace Myapi.Middlewares
                 //}
 
                 await GetRequestHeadInvoke(context);
-                ////¸ù¾Ý×´Ì¬ÂëÅÐ¶ÏÊÇ·ñ¼ÌÐøÊ¹ÓÃÕâ¸öcontex»á»°¡£
                 if (context.Response.StatusCode == 200)
                 {
                     await _next.Invoke(context);
@@ -94,7 +93,7 @@ namespace Myapi.Middlewares
         }
 
         /// <summary>
-        /// ÅÐ¶ÏÊÇ·ñ´æÔÚ¸ÃappidºÍappsecretµÄÊý¾Ý¡£
+        /// 
         /// </summary>
         /// <param name="context"></param>
         /// <param name="appId"></param>
@@ -102,7 +101,9 @@ namespace Myapi.Middlewares
         /// <returns></returns>
         private async Task CheckApplication(HttpContext context, string appId, string appSecret)
         {
-            var IsExist = GetAllApplications().Any(x => x.AppId.ToString() == appId & x.AppSecret == appSecret);
+             Myapi.SqlContext.MySqlContext mySqlContext = new SqlContext.MySqlContext();
+            AppServices appServices = new AppServices(mySqlContext);
+            var IsExist = appServices.CheckAppinfo(appId,appSecret);
             if (!IsExist)
             {
                 await ReturnNoAuthorized(context);
@@ -141,7 +142,7 @@ namespace Myapi.Middlewares
         }
        
         /// <summary>
-        /// ´ÓheadÌáÈ¡ÈÏÖ¤Ïà¹ØÐÅÏ¢
+        /// ï¿½ï¿½headï¿½ï¿½È¡ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
@@ -205,17 +206,6 @@ namespace Myapi.Middlewares
             {
                 await ReturnNoAuthorized(context);
             }
-        }
-
-        /// <summary>
-        /// return the application infomations
-        /// </summary>
-        /// <returns></returns>
-        private IEnumerable<Application> GetAllApplications()
-        {
-            Myapi.SqlContext.MySqlContext mySqlContext = new SqlContext.MySqlContext();
-            AppServices appServices = new AppServices(mySqlContext);
-            return appServices.GetList();
         }
         #endregion
     }

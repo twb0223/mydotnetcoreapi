@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Myapi.Controllers
 {
 
-     [Route("api/[controller]")]
+    [Route("api/[controller]")]
     public class AccountsController : Controller
     {
         private SqlContext.MySqlContext mySqlContext;
@@ -34,6 +34,7 @@ namespace Myapi.Controllers
             return commonResult;
         }
 
+
         [HttpPost]
         public SingleResult<string> AddNewApp(AppDto appDto)
         {
@@ -52,5 +53,7 @@ namespace Myapi.Controllers
                 Message = "OK",
             };
         }
+
+        
     }
 }
