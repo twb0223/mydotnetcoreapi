@@ -1,4 +1,4 @@
-# .Net Core 2.0 ,IdentityServer4身份认证框架使用
+# .Net Core 2.0 ,IdentityServer4身份认证框架使用(使用客户端证书控制API访问)
 
 ### 所用技术
    * .Net Core 2.0
