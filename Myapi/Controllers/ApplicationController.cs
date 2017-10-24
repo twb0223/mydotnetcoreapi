@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Myapi.Common;
+using Myapi.Models;
 using Myapi.Services;
 using Myapi.SqlContext;
-using Myapi.Models;
-using Myapi.Common;
-using System.Collections.Generic;
-using System;
 
 namespace Myapi.Controllers
 {
@@ -21,19 +19,21 @@ namespace Myapi.Controllers
         }
 
         [HttpPost]
-        public PageResult<Application> GetAllApplications(int pagesize,int pageindex)
+        public PageResult<Application> GetAllApplications(int pagesize, int pageindex)
         {
             var pageResult = new PageResult<Application>
             {
                 Code = ResultCode.C1000,
                 Message = "OK",
-                PageIndex=pageindex,
-                PageSize=pagesize,
-                Total=appServices.GetApplicationsCout(),
-                Data = appServices.GetPageList(pagesize,pageindex)
+                PageIndex = pageindex,
+                PageSize = pagesize,
+                Total = appServices.GetApplicationsCout(),
+                Data = appServices.GetPageList(pagesize, pageindex)
             };
             return pageResult;
         }
+
+
         // [HttpPut]
         // public SingleResult<string> AddApplist()
         // {
