@@ -28,7 +28,13 @@ namespace Myapi.Controllers
         [Route("/api/Claims")]
         public IActionResult GetClaims()
         {
-            return new JsonResult(from c in User.Claims select c);
+            return new JsonResult(from c in User.Claims
+                                  select 
+                                  new { c.Issuer,
+                                        c.OriginalIssuer,
+                                        c.Type,
+                                        c.Value
+                                  });
         }
 
         [HttpGet]

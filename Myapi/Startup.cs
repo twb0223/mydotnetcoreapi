@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Myapi.Middlewares;
-using Swashbuckle.AspNetCore.Swagger;
-using System;
-using Newtonsoft.Json.Serialization;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Myapi
 {
@@ -29,15 +26,16 @@ namespace Myapi
                 c.SwaggerDoc("v1", new Info { Title = "MyAPI", Version = "v1" });
             });
 
-            ////去掉json名称转换。大写转小写
-            services.AddMvc().AddJsonOptions(options =>
-            {
-                if (options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
-                {
-                    resolver.NamingStrategy = null;
-                }
-            });
-            services.AddMvc();
+            //////去掉json名称转换。大写转小写
+            //services.AddMvc().AddJsonOptions(options =>
+            //{
+            //    if (options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
+            //    {
+            //        resolver.NamingStrategy = null;
+            //    }
+            //});
+
+    
             services.AddAuthentication((options) =>
             {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -50,6 +48,8 @@ namespace Myapi
                 options.Audience = "api1";//api范围
                 options.Authority = "http://localhost:5000";//IdentityServer地址
             });
+
+            services.AddMvc();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)

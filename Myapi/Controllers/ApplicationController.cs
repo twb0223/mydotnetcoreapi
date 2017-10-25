@@ -21,7 +21,7 @@ namespace Myapi.Controllers
         }
 
         [HttpPost]
-        public PageResult<Application> GetAllApplications(int pagesize, int pageindex)
+        public PageResult<Application> GetAllApplications(int pagesize=1, int pageindex=100)
         {
             var pageResult = new PageResult<Application>
             {
@@ -34,7 +34,7 @@ namespace Myapi.Controllers
             };
             return pageResult;
         }
-
+       
 
         // [HttpPut]
         // public SingleResult<string> AddApplist()
