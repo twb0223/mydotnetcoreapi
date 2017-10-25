@@ -8,12 +8,10 @@
 
 ### 项目说明
   * IndentityServer 认证服务器
-  * API 资源服务器
-  * Client 调用客户端
+  * MyAPI 资源服务器
   
 
 ### 运行顺序
-  * QuickstartIdentityServer
-  * API
-  * Client
+  * IdentityServer
+  * MyAPI
 
