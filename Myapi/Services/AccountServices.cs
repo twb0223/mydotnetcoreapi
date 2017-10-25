@@ -27,13 +27,13 @@ namespace Myapi.Services
             mySqlContext.Accounts.Add(account);
             mySqlContext.SaveChanges();
         }
-        public IEnumerable<Account_ApplicationVM> GetAccountApplist()
+        public IEnumerable<Account_ApplicationDto> GetAccountApplist()
         {
             var result = (from a in mySqlContext.Applications
                           join b in mySqlContext.Accounts
                           on a.AccountID equals b.ID into hh
                           from h in hh.DefaultIfEmpty()
-                          select new Account_ApplicationVM
+                          select new Account_ApplicationDto
                           {
                               AppId = a.AppId,
                               AppName = a.AppName,

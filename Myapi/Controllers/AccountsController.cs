@@ -32,9 +32,9 @@ namespace Myapi.Controllers
         }
 
         [HttpGet]
-        public ListResult<Account_ApplicationVM> Get()
+        public ListResult<Account_ApplicationDto> Get()
         {
-            var commonResult = new ListResult<Account_ApplicationVM>
+            var commonResult = new ListResult<Account_ApplicationDto>
             {
                 Code = ResultCode.C1000,
                 Message = "OK",
