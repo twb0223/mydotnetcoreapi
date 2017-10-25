@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Myapi.Common;
 using Myapi.Models;
 using Myapi.Services;
@@ -6,6 +7,7 @@ using Myapi.SqlContext;
 
 namespace Myapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class ApplicationController : Controller
     {

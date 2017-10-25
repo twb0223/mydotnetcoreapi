@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Myapi.Common;
 using Myapi.Services;
 using Myapi.SqlContext;
 using Myapi.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Myapi.Controllers
 {
-
+    [Authorize]
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
@@ -20,6 +22,13 @@ namespace Myapi.Controllers
             this.mySqlContext = new MySqlContext();
             this.accountServices = new AccountServices(mySqlContext);
             this.appServices = new AppServices(mySqlContext);
+        }
+
+        [HttpGet]
+        [Route("/api/Claims")]
+        public IActionResult GetClaims()
+        {
+            return new JsonResult(from c in User.Claims select c);
         }
 
         [HttpGet]

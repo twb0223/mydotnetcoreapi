@@ -2,14 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Myapi.ViewModel;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Myapi.Controllers
 {
     public class AuthController : Controller
     {
+
+
         [HttpPost]
-        [Route("/api/GetToken_ClientCredentials", Name = "Token")]
+        [Route("/api/GetToken_ClientCredentials")]
         public async Task<Token> GetTokenAsync(string clientid,string secret)
         {
             //获得token

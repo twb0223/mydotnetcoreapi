@@ -7,6 +7,8 @@ using Myapi.Middlewares;
 using Swashbuckle.AspNetCore.Swagger;
 using System;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Myapi
 {
@@ -28,14 +30,26 @@ namespace Myapi
             });
 
             ////去掉json名称转换。大写转小写
-            //services.AddMvc().AddJsonOptions(options =>
-            //{
-            //    if (options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
-            //    {
-            //        resolver.NamingStrategy = null;
-            //    }
-            //});
+            services.AddMvc().AddJsonOptions(options =>
+            {
+                if (options.SerializerSettings.ContractResolver is DefaultContractResolver resolver)
+                {
+                    resolver.NamingStrategy = null;
+                }
+            });
             services.AddMvc();
+            services.AddAuthentication((options) =>
+            {
+                options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+            .AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters();
+                options.RequireHttpsMetadata = false;
+                options.Audience = "api1";//api范围
+                options.Authority = "http://localhost:5000";//IdentityServer地址
+            });
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -52,18 +66,14 @@ namespace Myapi
                 app.UseExceptionHandler();
             }
             app.UseSwagger();
-
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "MyAPI V1");
             });
-            // app.UseApiAuthorized(new ApiAuthorizedOptions
-            // {
-            //     EncryptKey = Configuration.GetSection("ApiKey")["EncryptKey"],
-            //     ExpiredSecond = Convert.ToInt32(Configuration.GetSection("ApiKey")["ExpiredSecond"])
-            // });
+     
             app.UseStatusCodePages();
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
