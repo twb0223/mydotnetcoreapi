@@ -8,13 +8,13 @@ using System.Linq.Expressions;
 
 namespace Myapi.Services
 {
-    public class AppServices
+    public class AppServices : IAppServices
     {
         private MySqlContext mySqlContext;
         public AppServices(MySqlContext mySqlContext) => this.mySqlContext = mySqlContext;
         public bool CheckAppinfo(string appid, string appSecret) => mySqlContext.Applications.Any(x => x.AppId.ToString() == appid & x.AppSecret == appSecret);
         public IEnumerable<Application> GetList(Func<Application, bool> exp) => mySqlContext.Applications.Where(exp).ToList();
-        public IEnumerable<Application> GetPageList(int pagesize, int pageindex) => mySqlContext.Applications.Skip(pagesize * (pageindex - 1)).Take(pagesize).OrderBy(x => x.CreateTime);
+        public IEnumerable<Application> GetPageList(int pagesize, int pageindex) => mySqlContext.Applications.OrderBy(x=>x.CreateTime).Skip(pagesize * (pageindex - 1)).Take(pagesize);
         public int GetApplicationsCout() => mySqlContext.Applications.Count();
         public void Insert(Application application)
         {

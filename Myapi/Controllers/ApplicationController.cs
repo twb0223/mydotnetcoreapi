@@ -11,13 +11,10 @@ namespace Myapi.Controllers
     [Route("api/[controller]")]
     public class ApplicationController : Controller
     {
-        private SqlContext.MySqlContext mySqlContext;
-        private AppServices appServices;
-
-        public ApplicationController()
+        private IAppServices appServices;
+        public ApplicationController(IAppServices _appServices)
         {
-            this.mySqlContext = new MySqlContext();
-            this.appServices = new AppServices(mySqlContext);
+            this.appServices = _appServices;
         }
 
         [HttpPost]

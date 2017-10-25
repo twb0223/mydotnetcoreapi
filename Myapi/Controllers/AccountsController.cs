@@ -14,14 +14,13 @@ namespace Myapi.Controllers
     [Route("api/[controller]")]
     public class AccountsController : Controller
     {
-        private SqlContext.MySqlContext mySqlContext;
-        private AccountServices accountServices;
-        private AppServices appServices;
-        public AccountsController()
+        private IAccountServices accountServices;
+        private IAppServices appServices;
+        public AccountsController(IAccountServices _accountServices, IAppServices _appServices)
         {
-            this.mySqlContext = new MySqlContext();
-            this.accountServices = new AccountServices(mySqlContext);
-            this.appServices = new AppServices(mySqlContext);
+
+            this.accountServices = _accountServices;
+            this.appServices = _appServices;
         }
 
         [HttpGet]

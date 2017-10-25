@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Myapi.Services
 {
-    public class AccountServices
+    public class AccountServices : IAccountServices
     {
         private MySqlContext mySqlContext;
         public AccountServices(MySqlContext _mysqlcontext)

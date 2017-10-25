@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Myapi.Services;
+using Myapi.SqlContext;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace Myapi
@@ -21,11 +24,19 @@ namespace Myapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+
+            services.AddDbContextPool<MySqlContext>(
+                    options => options.UseMySql(@"Server=bdm275410299.my3w.com;database=bdm275410299_db;uid=bdm275410299;pwd=tanwenbin"));
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new Info { Title = "MyAPI", Version = "v1" });
             });
 
+            services.AddTransient<IAppServices, AppServices>();
+            services.AddTransient<IAccountServices, AccountServices>();
+            
             //////去掉json名称转换。大写转小写
             //services.AddMvc().AddJsonOptions(options =>
             //{
@@ -35,7 +46,7 @@ namespace Myapi
             //    }
             //});
 
-    
+
             services.AddAuthentication((options) =>
             {
                 options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
