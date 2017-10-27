@@ -15,3 +15,9 @@
   * IdentityServer
   * MyAPI
 
+### 运行命令
+```
+dotnet resotre
+
+dotnet run
+```
