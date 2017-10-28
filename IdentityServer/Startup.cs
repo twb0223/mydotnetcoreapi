@@ -23,12 +23,8 @@ namespace IdentityServer
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddIdentityServer()
-            //.AddDeveloperSigningCredential();
-
             const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
             var migrationsAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
-
 
             services.AddIdentityServer()
                 .AddDeveloperSigningCredential()
@@ -59,7 +55,7 @@ namespace IdentityServer
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            InitializeDatabase(app);
+           // InitializeDatabase(app);
             loggerFactory.AddConsole(LogLevel.Debug);
             if (env.IsDevelopment())
             {
@@ -70,39 +66,39 @@ namespace IdentityServer
 
         private void InitializeDatabase(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
-            {
-                serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
+            // using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            // {
+            //     serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
 
-                var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
-                context.Database.Migrate();
-                if (!context.Clients.Any())
-                {
-                    foreach (var client in Config.GetClients())
-                    {
-                        context.Clients.Add(client.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
+            //     var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
+            //     context.Database.Migrate();
+            //     if (!context.Clients.Any())
+            //     {
+            //         foreach (var client in Config.GetClients())
+            //         {
+            //             context.Clients.Add(client.ToEntity());
+            //         }
+            //         context.SaveChanges();
+            //     }
 
-                if (!context.IdentityResources.Any())
-                {
-                    foreach (var resource in Config.GetIdentityResources())
-                    {
-                        context.IdentityResources.Add(resource.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
+            //     if (!context.IdentityResources.Any())
+            //     {
+            //         foreach (var resource in Config.GetIdentityResources())
+            //         {
+            //             context.IdentityResources.Add(resource.ToEntity());
+            //         }
+            //         context.SaveChanges();
+            //     }
 
-                if (!context.ApiResources.Any())
-                {
-                    foreach (var resource in Config.GetApiResources())
-                    {
-                        context.ApiResources.Add(resource.ToEntity());
-                    }
-                    context.SaveChanges();
-                }
-            }
+            //     if (!context.ApiResources.Any())
+            //     {
+            //         foreach (var resource in Config.GetApiResources())
+            //         {
+            //             context.ApiResources.Add(resource.ToEntity());
+            //         }
+            //         context.SaveChanges();
+            //     }
+            // }
         }
 
     }
