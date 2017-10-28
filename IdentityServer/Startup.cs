@@ -17,10 +17,6 @@ namespace IdentityServer
 {
     public class Startup
     {
-
-
-        // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             const string connectionString = @"Data Source=(LocalDb)\MSSQLLocalDB;database=IdentityServer4.Quickstart.EntityFramework-2.0.0;trusted_connection=yes;";
@@ -69,7 +65,6 @@ namespace IdentityServer
             // using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             // {
             //     serviceScope.ServiceProvider.GetRequiredService<PersistedGrantDbContext>().Database.Migrate();
-
             //     var context = serviceScope.ServiceProvider.GetRequiredService<ConfigurationDbContext>();
             //     context.Database.Migrate();
             //     if (!context.Clients.Any())
@@ -80,7 +75,6 @@ namespace IdentityServer
             //         }
             //         context.SaveChanges();
             //     }
-
             //     if (!context.IdentityResources.Any())
             //     {
             //         foreach (var resource in Config.GetIdentityResources())
@@ -89,7 +83,6 @@ namespace IdentityServer
             //         }
             //         context.SaveChanges();
             //     }
-
             //     if (!context.ApiResources.Any())
             //     {
             //         foreach (var resource in Config.GetApiResources())
