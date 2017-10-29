@@ -9,16 +9,11 @@ namespace IdentityServer
 {
     public class Config
     {
-        public static IEnumerable<ApiResource> GetApiResources()
-        {
-            return new List<ApiResource>
+        public static IEnumerable<ApiResource> GetApiResources() => new List<ApiResource>
             {
                 new ApiResource("api1", "My API")
             };
-        }
-        public static IEnumerable<Client> GetClients()
-        {
-            return new List<Client>
+        public static IEnumerable<Client> GetClients() => new List<Client>
             {
                 new Client
                 {
@@ -46,12 +41,7 @@ namespace IdentityServer
                     AllowedScopes = { "api1" }
                 }
             };
-           
-        }
-
-        public static List<TestUser> GetUsers()
-        {
-            return new List<TestUser>
+        public static List<TestUser> GetUsers() => new List<TestUser>
             {
                 new TestUser
                 {
@@ -66,6 +56,5 @@ namespace IdentityServer
                     Password = "password"
                 }
             };
-        }
     }
 }
