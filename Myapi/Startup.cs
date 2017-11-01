@@ -59,7 +59,7 @@ namespace Myapi
                 options.Audience = "api1";//api范围
                 options.Authority = "http://localhost:5000";//IdentityServer地址
             });
-
+            services.AddCors();
             services.AddMvc();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
