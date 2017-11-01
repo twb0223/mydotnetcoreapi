@@ -85,6 +85,13 @@ namespace Myapi
      
             app.UseStatusCodePages();
             app.UseAuthentication();
+            app.UseCors(builder =>
+            {
+                builder.AllowAnyHeader();
+                builder.AllowAnyMethod();
+                builder.AllowAnyOrigin();
+            });
+
             app.UseMvc();
         }
     }
