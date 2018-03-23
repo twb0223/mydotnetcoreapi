@@ -30,3 +30,6 @@ Myapi/obj/Myapi.csproj.nuget.cache
 IdentityServer/obj/project.assets.json
 IdentityServer/obj/project.assets.json
 IdentityServer/obj/IdentityServer.csproj.nuget.g.props
+/.vs
+/IdentityServer/bin/Debug/netcoreapp2.0
+/IdentityServer/obj/Debug/netcoreapp2.0
