@@ -24,8 +24,6 @@ namespace Myapi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-
             services.AddDbContextPool<MySqlContext>(
                     options => options.UseMySql(@"Server=bdm275410299.my3w.com;database=bdm275410299_db;uid=bdm275410299;pwd=tanwenbin"));
 

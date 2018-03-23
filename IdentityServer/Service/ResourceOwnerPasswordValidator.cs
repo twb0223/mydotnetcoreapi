@@ -12,7 +12,5 @@ namespace IdentityServer.Service
         {
             throw new System.NotImplementedException();
         }
-
-
     }
 }

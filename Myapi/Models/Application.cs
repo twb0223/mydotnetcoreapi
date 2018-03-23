@@ -7,13 +7,13 @@ namespace Myapi.Models
     {
 
         [Required]
-        public Guid AppId { get; set; }
+        public int AppId { get; set; }
         [MaxLength(300), Required]
         public string AppName { get; set; }
         [MaxLength(300), Required]
         public string AppSecret { get; set; }
         [Required]
-        public Guid AccountID { get; set; }
+        public int AccountID { get; set; }
 
     }
 }

@@ -6,7 +6,7 @@ namespace Myapi.Models
     public class BaseModel
     {
         [Key]
-        public Guid ID
+        public int ID
         {
             get; set;
         }

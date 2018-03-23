@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using IdentityServer4.Models;
+﻿using IdentityServer4.Models;
 using IdentityServer4.Test;
+using System.Collections.Generic;
 
 namespace IdentityServer
 {
     public class Config
     {
         public static IEnumerable<ApiResource> GetApiResources() => new List<ApiResource>
-            {
-                new ApiResource("api1", "My API")
-            };
-        public static IEnumerable<Client> GetClients() => new List<Client>
+        {
+            new ApiResource("api1", "My API")
+        };
+        public static IEnumerable<Client> GetClients()
+        {
+            return new List<Client>
             {
                 new Client
                 {
@@ -41,7 +40,11 @@ namespace IdentityServer
                     AllowedScopes = { "api1" }
                 }
             };
-        public static List<TestUser> GetUsers() => new List<TestUser>
+        }
+
+        public static List<TestUser> GetUsers()
+        {
+            return new List<TestUser>
             {
                 new TestUser
                 {
@@ -56,5 +59,15 @@ namespace IdentityServer
                     Password = "password"
                 }
             };
+        }
+
+        public static IEnumerable<IdentityResource> GetIdentityResources()
+        {
+            return new List<IdentityResource>
+            {
+                new IdentityResources.OpenId(),
+                new IdentityResources.Profile(),
+            };
+        }
     }
 }

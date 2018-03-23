@@ -54,9 +54,9 @@ namespace Myapi.Controllers
         {
             appServices.Insert(new Models.Application
             {
-                ID = Guid.NewGuid(),
-                AccountID = appDto.AccountID,
-                AppId = Guid.NewGuid(),
+                ID =new Random().Next(100000,999999),
+                AccountID = new Random().Next(100000, 999999),
+                AppId = new Random().Next(100000, 999999),
                 AppName = appDto.AppName,
                 AppSecret = MD5Helper.GetEncryptResult(appDto.AppName, appDto.AccountID + appDto.AppName),
                 CreateTime = DateTime.Now

@@ -22,12 +22,12 @@ namespace Myapi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("/api/GetToken_ClientCredentials")]
-        public async Task<Token> GetTokenAsync(string clientid, string secret)
+        public async Task<Token> GetTokenAsync([FromForm] AuthDto authDto)
         {
             //获得token
             var dict = new SortedDictionary<string, string>();
-            dict.Add("client_id", clientid);
-            dict.Add("client_secret", secret);
+            dict.Add("client_id", authDto.clientid);
+            dict.Add("client_secret", authDto.secret);
             dict.Add("grant_type", "client_credentials");
             var data = await tokenurl.PostUrlEncodedAsync(dict).ReceiveJson<Token>();
             return data;
@@ -90,4 +90,5 @@ namespace Myapi.Controllers
             return content;
         }
     }
+
 }
