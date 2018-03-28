@@ -33,3 +33,8 @@ IdentityServer/obj/IdentityServer.csproj.nuget.g.props
 /.vs
 /IdentityServer/bin/Debug/netcoreapp2.0
 /IdentityServer/obj/Debug/netcoreapp2.0
+/EventBus.Console/bin/Debug/netcoreapp2.0
+/EventBus.Console/obj/Debug/netcoreapp2.0
+/EventBus.Console/obj
+/EventBus.Core/obj
+/EventBus.Core/bin/Debug/netcoreapp2.0
